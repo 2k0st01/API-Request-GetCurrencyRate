@@ -59,7 +59,27 @@ public class DBManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    public static void getAnAverageRate(LocalDate from, LocalDate to) {
+        int temp = 0;
+        double sum = 0;
+        try {
+            TypedQuery<CurrencyRate> typedQuery = em.createQuery(
+                    "SELECT c FROM CurrencyRate c WHERE c.exchangeDate >= :from AND c.exchangeDate <= :to",
+                    CurrencyRate.class);
+            typedQuery.setParameter("from", from);
+            typedQuery.setParameter("to", to);
+            List<CurrencyRate> list = typedQuery.getResultList();
+
+            for (CurrencyRate cr : list){
+                temp++;
+                sum = sum+ cr.getRate();
+            }
+            System.out.println(sum/temp);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

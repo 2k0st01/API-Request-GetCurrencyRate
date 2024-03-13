@@ -8,5 +8,6 @@ public class Main {
         //DBManager.updateDate();
         System.out.println(DBManager.getRateByDate(LocalDate.of(2024,01,13)));
         DBManager.getRateByDates(LocalDate.of(2024,01,01), LocalDate.of(2024,01,13));
+        DBManager.getAnAverageRate(LocalDate.of(2024,01,01), LocalDate.of(2024,02,5));
     }
 }
